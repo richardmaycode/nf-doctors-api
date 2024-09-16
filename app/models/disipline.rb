@@ -1,0 +1,2 @@
+class Disipline < ApplicationRecord
+end

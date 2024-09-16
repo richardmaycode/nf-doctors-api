@@ -1,0 +1,2 @@
+class NfType < ApplicationRecord
+end
