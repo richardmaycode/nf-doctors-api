@@ -1,0 +1,67 @@
+<%= form_with model: [@facility, @employee] do |f| %>
+  <% if @employee.errors.any? %>
+    <div class="my-2" style="color: red">
+      <h2 class="font-semibold"><%= pluralize(@employee.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <ul>
+        <% @employee.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="space-y-12">
+    <div class="border-b border-gray-900/10 pb-12">
+      <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
+        <%= tag.div class: "sm:col-span-6" do %>
+          <%= f.label :prefix, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= tag.div class: "mt-2" do %>
+            <%= f.select :prefix, Employee::PREFIXES.map { |p| [p, p] }, { }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
+        <%= tag.div class: "sm:col-span-6" do %>
+          <%= f.label :name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= tag.div class: "mt-2" do %>
+            <%= f.text_field :name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="py-6 w-full" data-controller="defaults" data-defaults-delimiter-value=", ">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Suffixes</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600"></p>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full flex gap-6">
+            <%= f.text_field :suffix, data: { defaults_target: "output" }, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          </div>
+          <div class="flex flex-wrap col-span-full gap-4 w-full">
+            <% Suffix.all.each do |suffix| %>
+              <%= tag.div suffix.abbreviation, data: { action: "click->defaults#fill" }, class: "bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
+        <%= tag.div class: "sm:col-span-6" do %>
+          <%= f.label :location_id, "Location", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= tag.div class: "mt-2" do %>
+            <%= f.select :location_id, @locations.map { |l| [l.name, l.id] }, { }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="py-6 flex gap-3">
+        <div class="flex h-6 items-center">
+          <%= f.check_box :coordinator,  class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+        </div>
+        <div class="text-sm leading-6">
+          <label for="comments" class="font-medium text-gray-900">Coordinator</label>
+          <p class="text-gray-500">Check the box to denote that the staff member is a coordinator.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <%= link_to "Cancel", facility_path(@facility), class: "text-sm font-semibold leading-6 text-gray-900" %>
+    <%= f.submit class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

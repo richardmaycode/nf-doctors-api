@@ -1,0 +1,25 @@
+<div class="table-row">
+  <div class="table-cell p-3">
+    <%= location.name %>
+  </div>
+  <div class="table-cell">
+    <% location.nf_types.each do |nf_type| %>
+      <%= nf_type.abbreviation %>
+    <% end %>
+  </div>
+  <div class="table-cell">
+    <% location.age_groups.each do |age_group| %>
+      <%= age_group.name.humanize.titleize %>
+    <% end %>
+  </div>
+  <div class="table-cell">
+    <%= location.disiplines.pluck(:name).join(", ") %>
+  </div>
+  <div class="table-cell">
+    <div class="flex gap-4">
+      <%= link_to "View", facility_location_path(@facility)%>
+      <%= link_to "Edit", edit_facility_location_path(@facility) %>
+      <%= button_to "Delete", facility_location_path(@facility), data: { method: :delete }, class: "text-red-900" %>
+    </div>
+  </div>
+</div>

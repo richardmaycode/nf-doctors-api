@@ -1,0 +1,30 @@
+<div class="flex flex-col w-full">
+  <div class="mb-4 flex justify-between">
+    <h1 class="font-bold text-4xl">All Facilities</h1>
+    <%= link_to "Add", new_facility_path %>
+  </div>
+  <div class="table w-full border-collapse table-auto text-sm">
+    <div class="table-header-group">
+      <div class="table-row">
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+          Name
+        </div>
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+          Status
+        </div>
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+          Private
+        </div>
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+          Locations
+        </div>
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+          Actions
+        </div>
+      </div>
+    </div>
+    <div class="table-row-group">
+      <%= render @facilities %>
+    </div>
+  </div>
+</div>

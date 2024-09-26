@@ -1,0 +1,124 @@
+<%= form_with model: [@facility, @location] do |f| %>
+  <% if @location.errors.any? %>
+    <div class="my-2" style="color: red">
+      <h2 class="font-semibold"><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <ul>
+        <% @location.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="space-y-12">
+    <div class="border-b border-gray-900/10 pb-12">
+      <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
+        <%= tag.div class: "sm:col-span-6" do %>
+          <%= f.label :name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= tag.div class: "mt-2" do %>
+            <%= f.text_field :name, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="py-12">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Address</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Primary address of the location</p>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full">
+            <%= f.label :address_line_1, "Street Address", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :address_line_1, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <%= f.label :address_line_2, "Suite/Unit", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :address_line_2, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <%= f.label :address_line_3, "Suite/Unit", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :address_line_3, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= f.label :city, "City", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :city, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= f.label :state, "State / Providence", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :state, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= f.label :zipcode, "Zipcode/Postal Code", class: "block text-sm font-medium leading-6 text-gray-900" %>
+            <div class="mt-2">
+              <%= f.text_field :zipcode, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="py-6">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Age Groups</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Ages Seen at this location</p>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full flex gap-6">
+            <%= f.collection_check_boxes :age_group_ids, AgeGroup.all, :id, :name do |age_group| %>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <%= age_group.check_box class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+                </div>
+                <div class="text-sm leading-6">
+                  <%= age_group.label(class: "font-medium text-gray-900") { age_group.text.humanize.titleize } %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="py-6">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">NF Types</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">What types of NF are seen at this location</p>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full flex gap-6">
+            <%= f.collection_check_boxes :nf_type_ids, NfType.all, :id, :name do |nf_type| %>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <%= nf_type.check_box class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+                </div>
+                <div class="text-sm leading-6">
+                  <%= nf_type.label(class: "font-medium text-gray-900") { nf_type.text.humanize.titleize } %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="py-6">
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Location Disiplines</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">What are the disiplines of the location</p>
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="col-span-full flex gap-6 flex-wrap">
+            <%= f.collection_check_boxes :disipline_ids, Disipline.all, :id, :name do |disipline| %>
+              <div class="relative flex gap-x-3">
+                <div class="flex h-6 items-center">
+                  <%= disipline.check_box class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+                </div>
+                <div class="text-sm leading-6">
+                  <%= disipline.label(class: "font-medium text-gray-900") { disipline.text.humanize.titleize } %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <%= link_to "Cancel", facilities_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
+    <%= f.submit class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>
