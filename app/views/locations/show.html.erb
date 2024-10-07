@@ -1,4 +1,46 @@
-<div>
-  <h1 class="font-bold text-4xl">Locations#show</h1>
-  <p>Find me in app/views/locations/show.html.erb</p>
+<div class="flex flex-col gap-4 w-1/2 mx-auto">
+  <div>
+    <h1 class="font-bold text-4xl"><%= @location.name %></h1>
+    <p><%= @location.facility.title %></p>
+  </div>
+  <address>
+    <%= @location.address_line_1 %>
+    <%= @location.address_line_2 %>
+    <%= @location.city %> <%= @location.state %>, <%= @location.zipcode %>
+  </address>
+  <div>
+    <h3 class="text-xl">NF Types</h3>
+    <%= "No NF Types assigned to this location" if @location.nf_types.empty? %>
+    <ul>
+      <% @location.nf_types.each do |nf_type| %>
+        <%= tag.li nf_type.abbreviation %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-xl">Age Groups</h3>
+    <%= "No age groups assigned to this location" if @location.age_groups.empty? %>
+    <ul>
+      <% @location.age_groups.each do |age_group| %>
+        <%= tag.li age_group.name %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <h3 class="text-xl">Disiplines</h3>
+    <%= "No Disiplines assigned to this location" if @location.disiplines.empty? %>
+    <ul>
+      <% @location.disiplines.each do |disipline| %>
+        <%= tag.li disipline.name %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="flex gap-6">
+    <%= link_to "Back", @location.facility %>
+    <%= link_to "Edit", edit_facility_location_path(@location.facility, @location) %>
+    <%= link_to "Delete", facility_location_path, data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" }, class: "text-red-900"%>
+    </div>
 </div>

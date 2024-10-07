@@ -58,8 +58,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_140109) do
     t.string "title"
     t.string "subtitle"
     t.string "primary_state"
-    t.integer "status"
-    t.boolean "private"
+    t.integer "status", default: 0
+    t.boolean "private", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
