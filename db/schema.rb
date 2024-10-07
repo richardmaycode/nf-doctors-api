@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_140109) do
   create_table "facilities", force: :cascade do |t|
     t.string "title"
     t.string "subtitle"
+    t.string "primary_state"
     t.integer "status"
     t.boolean "private"
     t.datetime "created_at", null: false

@@ -19,6 +19,14 @@
           <% end %>
         <% end %>
       <% end %>
+      <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
+        <%= tag.div class: "sm:col-span-6" do %>
+          <%= f.label :primary_state, "Primary State", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= tag.div class: "mt-2" do %>
+            <%= f.select :primary_state, options_for_select(us_states, f.object.primary_state), class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+          <% end %>
+        <% end %>
+      <% end %>
       <div class="mt-10 space-y-10">
         <fieldset>
           <legend class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">Facility Details</legend>
