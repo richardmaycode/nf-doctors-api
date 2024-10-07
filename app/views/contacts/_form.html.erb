@@ -1,0 +1,42 @@
+<%= form_with model: [@facility, @contact] do |f| %>
+  <% if @facility.errors.any? %>
+    <div class="my-2" style="color: red">
+      <h2 class="font-semibold"><%= pluralize(@contact.errors.count, "error") %> prohibited this facility from being saved:</h2>
+      <ul>
+        <% @contact.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div data-controller="scope" data-scope-first-value="Location" data-scope-second-value="Employee">
+    <div class="my-4">
+      <%= f.label :flavor_chocolate_location, class: "flex gap-3 my-2" do %>
+        <%= f.radio_button :contactable_type, "Location", checked: true, class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600", data: { action: "input->scope#change"} %>
+        <div class="font-medium text-gray-900">Location</div>
+      <% end %>
+      <%= f.label :contactable_type_employee, class: "flex gap-3 my-2" do %>
+        <%= f.radio_button :contactable_type, "Employee", class: "h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600", data: { action: "input->scope#change" } %>
+        <div class="font-medium text-gray-900">Employee</div>
+      <% end %>
+    </div>
+    <div class="my-4">
+      <%= f.label :contactable_id, "Contact", class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+      <%= f.select :contactable_id, options_for_select(@facility.locations.map { |l| [l.name, l.id] }, f.object.contactable_id), { }, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6", data: { scope_target: "optionOne" } %>
+      <%= f.select :contactable_id, options_for_select(@facility.employees.map { |e| [e.name, e.id] }, f.object.contactable_id), { }, class: "hidden block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6", data: { scope_target: "optionTwo" } %>
+    </div>
+  </div>
+  <div class="my-4">
+    <%= f.label :method, "Contact Method", class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+    <%= f.select :method, options_for_select(Contact.methods.map { |k, v| [k.titleize, k] }, f.object.method), { } ,class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" %>
+  </div>
+  <div class="my-4">
+    <%= f.label :value, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
+    <%= f.text_field :value, class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 dark:bg-slate-400" %>
+  </div>
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <%= f.hidden_field :facility_id, value: @facility.id %>
+    <%= link_to "Cancel", facility_path(@facility), class: "text-sm font-semibold leading-6 text-gray-900" %>
+    <%= f.submit class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

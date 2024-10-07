@@ -1,17 +1,17 @@
-<div class="table-row">
-  <div class="table-cell">
-    <%= facility.name %>
+<div class="table-row bg-slate-400">
+  <div class="table-cell p-4">
+    <%= facility.title %>
   </div>
-  <div class="table-cell">
+  <div class="table-cell p-4">
     <%= facility.status.titleize%>
   </div>
-  <div class="table-cell">
+  <div class="table-cell p-4">
     <%= facility.private ? "Yes" : "No" %>
   </div>
-  <div class="table-cell">
+  <div class="table-cell p-4">
     <%= facility.locations.count %>
   </div>
-  <div class="table-cell">
+  <div class="table-cell p-4">
     <div class="flex gap-4">
       <%= link_to "View", facility_path(facility)%>
       <%= link_to "Edit", edit_facility_path(facility) %>

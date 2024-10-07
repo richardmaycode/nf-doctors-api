@@ -9,6 +9,7 @@ class CreateContacts < ActiveRecord::Migration[7.2]
 
       t.bigint :contactable_id
       t.string :contactable_type
+      t.belongs_to :facility, null: false, foreign_key: true
 
       t.timestamps
     end

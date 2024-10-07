@@ -42,6 +42,6 @@ class FacilitiesController < ApplicationController
   end
 
   def facility_params
-    params.require(:facility).permit(:name, :status, :private)
+    params.require(:facility).permit(:title, :status, :private)
   end
 end

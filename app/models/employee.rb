@@ -3,4 +3,8 @@ class Employee < ApplicationRecord
 
   belongs_to :location
   has_many :contacts, as: :contactable
+
+  def display_name
+    [ prefix, name, suffix ].join(" ")
+  end
 end

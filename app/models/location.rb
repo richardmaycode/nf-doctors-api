@@ -17,4 +17,8 @@ class Location < ApplicationRecord
 
   # validates :location_age_groups, length: { minimum: 1, maximum: 3 }
   # validates :location_nf_types, length: { minimum: 1, maximum: 3 }
+  # 
+  def display_name
+    name
+  end
 end

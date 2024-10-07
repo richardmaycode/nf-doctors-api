@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-4 w-full">
   <div>
-    <%= tag.h1 @facility.name, class: "font-bold text-4xl" %>
+    <%= tag.h1 @facility.title, class: "font-bold text-4xl dark:text-gray-100" %>
   </div>
   <div class="flex justify-between">
     <%= tag.h2 "Locations", class: "font-bold text-2xl" %>
@@ -63,11 +63,10 @@
       <% end %>
     </div>
   </div>
-
   <div class="flex justify-between">
     <%= tag.h2 "Contact Methods", class: "font-bold text-2xl" %>
     <div>
-      <%= link_to "New Contact Methods", new_contact_path(@facility) ,class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <%= link_to "New Contact Methods", new_facility_contact_path(@facility) ,class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     </div>
   </div>
   <div class="table w-full border-collapse table-auto text-sm">
@@ -80,6 +79,9 @@
           Belongs To
         </div>
         <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-900 text-left">
+          Private Listing
+        </div>
+        <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-900 text-left">
           Value
         </div>
         <div class="table-cell border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-900 text-left">
@@ -88,6 +90,7 @@
       </div>
     </div>
     <div class="table-row-group">
+      <%= render @facility.contacts %>
     </div>
   </div>
 </div>

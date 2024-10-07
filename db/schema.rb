@@ -22,14 +22,16 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_140109) do
   end
 
   create_table "contacts", force: :cascade do |t|
-    t.string "phone"
-    t.string "fax"
-    t.string "email"
+    t.integer "method"
+    t.string "value"
+    t.string "comment"
     t.boolean "private"
     t.bigint "contactable_id"
     t.string "contactable_type"
+    t.bigint "facility_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_contacts_on_facility_id"
   end
 
   create_table "disiplines", force: :cascade do |t|
@@ -53,7 +55,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_140109) do
   end
 
   create_table "facilities", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "subtitle"
     t.integer "status"
     t.boolean "private"
     t.datetime "created_at", null: false
@@ -120,6 +123,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_140109) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contacts", "facilities"
   add_foreign_key "employees", "locations"
   add_foreign_key "location_age_groups", "age_groups"
   add_foreign_key "location_age_groups", "locations"

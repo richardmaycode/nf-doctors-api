@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   resources :facilities do
     resources :locations
     resources :employees
+    resources :contacts
   end
 
-  resources :contacts
+  
 end
