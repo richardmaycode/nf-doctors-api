@@ -1,7 +1,9 @@
 class EmployeesController < ApplicationController
   before_action :set_facility
   before_action :set_locations
-  before_action :set_employee, only: %i[ edit update destroy]
+  before_action :set_employee, only: %i[ show edit update destroy]
+
+  def show; end
 
   def new
     @employee = Employee.new
