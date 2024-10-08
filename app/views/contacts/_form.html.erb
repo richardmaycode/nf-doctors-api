@@ -28,7 +28,7 @@
   </div>
   <div class="my-4">
     <%= f.label :method, "Contact Method", class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
-    <%= f.select :method, options_for_select(Contact.methods.map { |k, v| [k.titleize, k] }, f.object.method), { } ,class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" %>
+    <%= f.select :method, options_for_select(Contact.methods.map { |k, v| [k.titleize, k] }, f.object.method), { } ,class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" %>
   </div>
   <div class="my-4">
     <%= f.label :value, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100" %>
