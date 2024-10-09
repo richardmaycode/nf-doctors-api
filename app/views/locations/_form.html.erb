@@ -61,6 +61,14 @@
           </div>
         </div>
       </div>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="col-span-full">
+          <%= f.label :url, "Web Address", class: "block text-sm font-medium leading-6 text-gray-900 dark:text-slate-200" %>
+          <div class="mt-2">
+            <%= f.text_field :url, class: "dark:bg-gray-700 dark:text-gray-200 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+          </div>
+        </div>
+      </div>
       <div class="py-6">
         <h2 class="text-base font-semibold leading-7 text-gray-900 dark:text-slate-200">Age Groups</h2>
         <p class="mt-1 text-sm leading-6 text-gray-600">Ages Seen at this location</p>
