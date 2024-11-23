@@ -1,5 +1,5 @@
 class Employee < ApplicationRecord
-  PREFIXES = %w[ Dr Professor Mr Miss Mrs Ms "" ]
+  PREFIXES = %w[ Dr Professor Mr Miss Mrs Ms ]
 
   belongs_to :location
   has_one :facility, through: :location
