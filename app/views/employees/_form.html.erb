@@ -13,7 +13,7 @@
     <div class="border-b border-gray-900/10 pb-12">
       <%= tag.div class: "mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" do %>
         <%= tag.div class: "sm:col-span-6" do %>
-          <%= f.label :prefix, class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <%= f.label :prefix, class: "block text-sm font-medium leading-6 text-gray-900 dark:text-slate-200" %>
           <%= tag.div class: "mt-2" do %>
             <%= f.select :prefix, Employee::PREFIXES.map { |p| [p, p] }, { :include_blank => true }, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
           <% end %>
