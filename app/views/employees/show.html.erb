@@ -3,12 +3,12 @@
     <h1 class="text-4xl dark:text-slate-200">Employee details</h1>
   </div>
   <div>
-    <p>Name</p>
-    <p><%= @employee.display_name %></p>
+    <p class="dark:text-slate-200">Name</p>
+    <p><%= @employee.display_name, class: "dark:text-slate-200" %></p>
   </div>
   <div>
-    <p>Location</p>
-    <p><%= @employee.location.name %></p>
+    <p class="dark:text-slate-200">Location</p>
+    <p><%= @employee.location.name, class: "dark:text-slate-200" %></p>
   </div>
   <div>
     <%= link_to "Back", @employee.facility, class: "dark:text-slate-200" %>
