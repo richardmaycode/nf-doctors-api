@@ -4,11 +4,11 @@
   </div>
   <div>
     <p class="dark:text-slate-200">Name</p>
-    <p><%= @employee.display_name, class: "dark:text-slate-200" %></p>
+    <%= tag.p @employee.display_name, class: "dark:text-slate-200" %>
   </div>
   <div>
     <p class="dark:text-slate-200">Location</p>
-    <p><%= @employee.location.name, class: "dark:text-slate-200" %></p>
+    <%= tag.p @employee.location.name, class: "dark:text-slate-200" %>
   </div>
   <div>
     <%= link_to "Back", @employee.facility, class: "dark:text-slate-200" %>
